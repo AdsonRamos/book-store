@@ -1,4 +1,4 @@
-function checkEmpty(string: String) {
+function checkEmpty(string: String | number) {
   return string === "" || string === null || string === undefined;
 }
 
