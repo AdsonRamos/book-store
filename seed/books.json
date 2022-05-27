@@ -1,0 +1,91 @@
+[
+  {
+    "name": "O Senhor dos anéis - A Sociedade do anel",
+    "description": "A batalha pela terra média começa",
+    "author": "J. R. R. Tolkien",
+    "stock": 13,
+    "sbn": "12345"
+  },
+  {
+    "name": "O Senhor dos anéis - As duas torres",
+    "description": "A batalha pela terra média está no meio",
+    "author": "J. R. R. Tolkien",
+    "stock": 13,
+    "sbn": "12346"
+  },
+  {
+    "name": "O Senhor dos anéis - O retorno do Rei",
+    "description": "A batalha pela terra média termina",
+    "author": "J. R. R. Tolkien",
+    "stock": 13,
+    "sbn": "12347"
+  },
+  {
+    "name": "Harry Potter e a Pedra Filosofal",
+    "description": "Início da saga do bruxo britânico",
+    "author": "J. K. Rowling",
+    "stock": 13,
+    "sbn": "12348"
+  },
+  {
+    "name": "Harry Potter e a Câmara secreta",
+    "description": "Tom Riddle aparece pela primeira vez",
+    "author": "J. K. Rowling",
+    "stock": 13,
+    "sbn": "12349"
+  },{
+    "name": "Harry Potter e o Prisioneiro de Azkaban",
+    "description": "O Prisioneiro é padrinho de Harry",
+    "author": "J. K. Rowling",
+    "stock": 13,
+    "sbn": "1234510"
+  },{
+    "name": "Harry Potter e o Calice de Fogo",
+    "description": "Voldmort toma forma física",
+    "author": "J. K. Rowling",
+    "stock": 13,
+    "sbn": "1234511"
+  },{
+    "name": "Harry Potter e a Ordem da fênix",
+    "description": "Dolores coloca ordem em Hogwarts",
+    "author": "J. K. Rowling",
+    "stock": 13,
+    "sbn": "1234512"
+  },{
+    "name": "Harry Potter e o Enigma do príncipe",
+    "description": "Snape é o príncipe mestiço",
+    "author": "J. K. Rowling",
+    "stock": 13,
+    "sbn": "1234513"
+  },{
+    "name": "Harry Potter e as Relíquias da Morte",
+    "description": "Destruir as orcruxes",
+    "author": "J. K. Rowling",
+    "stock": 13,
+    "sbn": "1234514"
+  },{
+    "name": "Crepúsculo",
+    "description": "Início da saga",
+    "author": "Stephenie Meyer",
+    "stock": 13,
+    "sbn": "1234515"
+  },{
+    "name": "Lua Nova",
+    "description": "Bela tem uma intensa amizade com Jacob",
+    "author": "Stephenie Meyer",
+    "stock": 13,
+    "sbn": "1234516"
+  },{
+    "name": "Eclipse",
+    "description": "Mortes acontecem em Seattle",
+    "author": "Stephenie Meyer",
+    "stock": 13,
+    "sbn": "1234517"
+  },{
+    "name": "Amanhecer",
+    "description": "Edward se casa com Bela e passam a lua de mel no Rio de Janeiro",
+    "author": "Stephenie Meyer",
+    "stock": 13,
+    "sbn": "1234518"
+  }
+]
