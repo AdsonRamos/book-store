@@ -1,11 +1,22 @@
 import { Router } from "express";
 
-const routes = Router()
+import { createBook } from "../controller/book";
 
-routes.post('/book', (req, res) => {
-  const body = req.body
-  console.log(req.body)
-  res.status(200).send(body)
-})
+const routes = Router();
 
-export default routes
+routes.post("/book", async (req, res) => {
+  const body = req.body;
+
+  const response = await createBook(body);
+
+  if (response.error) {
+    const { code, message } = response.error;
+    res.status(code).send(message);
+  } else {
+    res.status(200).send(body);
+  }
+
+  console.log("Response", response);
+});
+
+export default routes;
