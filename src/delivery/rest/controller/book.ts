@@ -1,6 +1,6 @@
-import { CreateBookUseCaseRepository } from "../../../infrastructure/provider/repository/book";
-import { CreateBookUseCaseValidate } from "../../../infrastructure/provider/validate/book";
-import { CreateBookUseCase } from "../../../domain/usecase/book";
+import { CreateBookUseCaseRepository, ListBooksByPageUseCaseRepository } from "../../../infrastructure/provider/repository/book";
+import { CreateBookUseCaseValidate, ListBooksByPageUseCaseValidate } from "../../../infrastructure/provider/validate/book";
+import { CreateBookUseCase, ListBooksByPageUseCase } from "../../../domain/usecase/book";
 import { BookEntity } from "../../../domain/usecase/entity/book";
 
 async function createBook(book: BookEntity) {
@@ -11,4 +11,12 @@ async function createBook(book: BookEntity) {
   return await usecase.createBook(book);
 }
 
-export { createBook };
+async function listBooksByPage(page: any, itensByPage: any) {
+  const repository = new ListBooksByPageUseCaseRepository();
+  const validate = new ListBooksByPageUseCaseValidate();
+  const usecase = new ListBooksByPageUseCase(repository, validate);
+
+  return await usecase.listBooksByPage(page, itensByPage)
+}
+
+export { createBook, listBooksByPage };

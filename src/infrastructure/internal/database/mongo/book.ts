@@ -1,7 +1,7 @@
 import { BookEntity } from "../../../../domain/usecase/entity/book";
 import Book from "./models/book";
 
-export async function createBook(book: BookEntity) {
+async function createBook(book: BookEntity) {
   let newBook = new Book({
     sbn: book.sbn,
     name: book.name,
@@ -12,6 +12,16 @@ export async function createBook(book: BookEntity) {
   return await Book.create(newBook);
 }
 
-export async function getBookBySBN(sbn: String) {
+async function getBookBySBN(sbn: String) {
   return await Book.find({ sbn });
+}
+
+async function listBooksByPage(page: number, itensByPage: number) {
+  return await Book.find({}, { name: 1, _id:0 }).limit(itensByPage).skip(page * itensByPage)
+}
+
+export {
+  createBook,
+  getBookBySBN,
+  listBooksByPage
 }

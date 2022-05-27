@@ -1,6 +1,8 @@
 import { Router } from "express";
 
-import { createBook } from "../controller/book";
+import { HTTP_STATUSES } from "../../../../common/constants";
+
+import { createBook, listBooksByPage } from "../controller/book";
 
 const routes = Router();
 
@@ -13,10 +15,23 @@ routes.post("/book", async (req, res) => {
     const { code, message } = response.error;
     res.status(code).send(message);
   } else {
-    res.status(200).send(body);
+    res.status(HTTP_STATUSES.OK).send(body);
   }
 
   console.log("Response", response);
+});
+
+routes.get("/books", async (req, res) => {
+  const query = req.query;
+
+  const response = await listBooksByPage(query.page, query.itensByPage);
+
+  if (response.error) {
+    const { code, message } = response.error;
+    res.status(code).send(message);
+  } else {
+    res.status(HTTP_STATUSES.OK).send(response.books);
+  }
 });
 
 export default routes;

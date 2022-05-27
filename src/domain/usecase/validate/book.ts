@@ -1,5 +1,11 @@
 import { BookEntity } from "../entity/book";
 
-export interface ICreateBookUseCaseValidate {
+interface ICreateBookUseCaseValidate {
   createBook(book: BookEntity): Promise<String | null>;
 }
+
+interface IListBooksByPageUseCaseValidate {
+  listBooksByPage(page: number, itensByPage: number): Promise<String | null>;
+}
+
+export { ICreateBookUseCaseValidate, IListBooksByPageUseCaseValidate };

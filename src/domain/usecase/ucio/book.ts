@@ -11,4 +11,14 @@ class CreateBookUseCaseResponse {
   }
 }
 
-export { CreateBookUseCaseResponse };
+class ListBooksByPageUseCaseResponse {
+  public books: String[] | null;
+  public error: ErrorEntity | null;
+
+  constructor(books: String[] | null, error: ErrorEntity | null) {
+    this.books = books;
+    this.error = error;
+  }
+}
+
+export { CreateBookUseCaseResponse, ListBooksByPageUseCaseResponse };
