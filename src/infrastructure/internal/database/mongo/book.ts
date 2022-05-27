@@ -11,3 +11,7 @@ export async function createBook(book: BookEntity) {
   });
   return await Book.create(newBook);
 }
+
+export async function getBookBySBN(sbn: String) {
+  return await Book.find({ sbn });
+}
