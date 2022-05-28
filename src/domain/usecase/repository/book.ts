@@ -16,9 +16,14 @@ interface IDeleteBookUseCaseRepository {
   deleteBook(_id: string): Promise<any>;
 }
 
+interface IUpdateBookUseCaseRepository {
+  updateBook(book: BookEntity): Promise<any>;
+}
+
 export {
   ICreateBookUseCaseRepository,
   IListBooksByPageUseCaseRepository,
   IGetBookUseCaseRepository,
-  IDeleteBookUseCaseRepository
+  IDeleteBookUseCaseRepository,
+  IUpdateBookUseCaseRepository
 }

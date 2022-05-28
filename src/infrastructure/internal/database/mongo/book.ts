@@ -17,15 +17,29 @@ async function getBookBySBN(sbn: String) {
 }
 
 async function listBooksByPage(page: number, itensByPage: number) {
-  return await Book.find({}, { name: 1, _id:0 }).limit(itensByPage).skip(page * itensByPage)
+  return await Book.find({}, { name: 1, _id: 0 })
+    .limit(itensByPage)
+    .skip(page * itensByPage);
 }
 
 async function getBook(_id: string) {
-  return await Book.findOne({_id})
+  return await Book.findOne({ _id });
 }
 
 async function deleteBook(_id: string) {
-  return await Book.deleteOne({_id})
+  return await Book.deleteOne({ _id });
+}
+
+async function updateBook(book: BookEntity) {
+  return await Book.updateOne(
+    { _id: book._id },
+    {
+      name: book.name,
+      description: book.description,
+      author: book.author,
+      stock: book.stock,
+    }
+  );
 }
 
 export {
@@ -33,5 +47,6 @@ export {
   getBookBySBN,
   listBooksByPage,
   getBook,
-  deleteBook
-}
+  deleteBook,
+  updateBook,
+};

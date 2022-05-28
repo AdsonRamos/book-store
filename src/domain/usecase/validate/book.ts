@@ -16,4 +16,14 @@ interface IDeleteBookUseCaseValidate {
   deleteBook(_id: string): Promise<String | null>;
 }
 
-export { ICreateBookUseCaseValidate, IListBooksByPageUseCaseValidate, IGetBookUseCaseValidate, IDeleteBookUseCaseValidate };
+interface IUpdateBookUseCaseValidate {
+  updateBook(book: BookEntity): Promise<String | null>;
+}
+
+export {
+  ICreateBookUseCaseValidate,
+  IListBooksByPageUseCaseValidate,
+  IGetBookUseCaseValidate,
+  IDeleteBookUseCaseValidate,
+  IUpdateBookUseCaseValidate,
+};

@@ -4,12 +4,14 @@ import {
   IDeleteBookUseCaseRepository,
   IGetBookUseCaseRepository,
   IListBooksByPageUseCaseRepository,
+  IUpdateBookUseCaseRepository,
 } from "../../../domain/usecase/repository/book";
 import {
   createBook,
   getBook,
   listBooksByPage,
   deleteBook,
+  updateBook,
 } from "../../internal/database/mongo/book";
 
 class CreateBookUseCaseRepository implements ICreateBookUseCaseRepository {
@@ -38,9 +40,16 @@ class DeleteBookUseCaseRepository implements IDeleteBookUseCaseRepository {
   }
 }
 
+class UpdateBookUseCaseRepository implements IUpdateBookUseCaseRepository {
+  async updateBook(book: BookEntity): Promise<any> {
+    return await updateBook(book);
+  }
+}
+
 export {
   CreateBookUseCaseRepository,
   ListBooksByPageUseCaseRepository,
   GetBookUseCaseRepository,
   DeleteBookUseCaseRepository,
+  UpdateBookUseCaseRepository
 };

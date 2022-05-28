@@ -7,12 +7,13 @@ import {
   deleteBook,
   getBook,
   listBooksByPage,
+  updateBook,
 } from "../controller/book";
 
 const routes = Router();
 
 routes.post("/book", async (req, res) => {
-  const body = req.body;
+  const { body } = req;
 
   const response = await createBook(body);
 
@@ -27,7 +28,7 @@ routes.post("/book", async (req, res) => {
 });
 
 routes.get("/books", async (req, res) => {
-  const query = req.query;
+  const { query } = req;
 
   const response = await listBooksByPage(query.page, query.itensByPage);
 
@@ -40,7 +41,7 @@ routes.get("/books", async (req, res) => {
 });
 
 routes.get("/book", async (req, res) => {
-  const query = req.query;
+  const { query } = req;
 
   const response = await getBook(query._id);
 
@@ -53,15 +54,28 @@ routes.get("/book", async (req, res) => {
 });
 
 routes.delete("/book", async (req, res) => {
-  const query = req.query;
+  const { query } = req;
 
   const response = await deleteBook(query._id);
 
   if (response.error) {
     const { code, message } = response.error;
+    res.status(code).send(message);
+  } else {
+    res.status(HTTP_STATUSES.OK).send();
+  }
+});
+
+routes.patch("/book", async (req, res) => {
+  const { body } = req;
+
+  const response = await updateBook(body);
+
+  if (response.error) {
+    const { code, message } = response.error;
     res.status(code).send(message)
   } else {
-    res.status(HTTP_STATUSES.OK).send()
+    res.status(HTTP_STATUSES.OK).send(response.book)
   }
 });
 
