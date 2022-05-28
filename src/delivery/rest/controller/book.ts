@@ -1,6 +1,6 @@
-import { CreateBookUseCaseRepository, GetBookUseCaseRepository, ListBooksByPageUseCaseRepository } from "../../../infrastructure/provider/repository/book";
-import { CreateBookUseCaseValidate, GetBookUseCaseValidate, ListBooksByPageUseCaseValidate } from "../../../infrastructure/provider/validate/book";
-import { CreateBookUseCase, GetBookUseCase, ListBooksByPageUseCase } from "../../../domain/usecase/book";
+import { CreateBookUseCaseRepository, DeleteBookUseCaseRepository, GetBookUseCaseRepository, ListBooksByPageUseCaseRepository } from "../../../infrastructure/provider/repository/book";
+import { CreateBookUseCaseValidate, DeleteBookUseCaseValidate, GetBookUseCaseValidate, ListBooksByPageUseCaseValidate } from "../../../infrastructure/provider/validate/book";
+import { CreateBookUseCase, DeleteBookUseCase, GetBookUseCase, ListBooksByPageUseCase } from "../../../domain/usecase/book";
 import { BookEntity } from "../../../domain/usecase/entity/book";
 
 async function createBook(book: BookEntity) {
@@ -27,4 +27,12 @@ async function getBook(_id: any) {
   return await usecase.getBook(_id)
 }
 
-export { createBook, listBooksByPage, getBook };
+async function deleteBook(_id: any) {
+  const repository = new DeleteBookUseCaseRepository();
+  const validate = new DeleteBookUseCaseValidate();
+  const usecase = new DeleteBookUseCase(repository, validate);
+
+  return await usecase.deleteBook(_id)
+}
+
+export { createBook, listBooksByPage, getBook, deleteBook };

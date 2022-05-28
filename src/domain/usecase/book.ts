@@ -1,9 +1,9 @@
 import { HTTP_STATUSES } from "../../../common/constants";
 import { BookEntity } from "./entity/book";
 import { ErrorEntity } from "./entity/error";
-import { ICreateBookUseCaseRepository, IGetBookUseCaseRepository, IListBooksByPageUseCaseRepository } from "./repository/book";
-import { CreateBookUseCaseResponse, GetBookUseCaseResponse, ListBooksByPageUseCaseResponse } from "./ucio/book";
-import { ICreateBookUseCaseValidate, IGetBookUseCaseValidate, IListBooksByPageUseCaseValidate } from "./validate/book";
+import { ICreateBookUseCaseRepository, IDeleteBookUseCaseRepository, IGetBookUseCaseRepository, IListBooksByPageUseCaseRepository } from "./repository/book";
+import { CreateBookUseCaseResponse, DeleteBookUseCaseResponse, GetBookUseCaseResponse, ListBooksByPageUseCaseResponse } from "./ucio/book";
+import { ICreateBookUseCaseValidate, IDeleteBookUseCaseValidate, IGetBookUseCaseValidate, IListBooksByPageUseCaseValidate } from "./validate/book";
 
 class CreateBookUseCase {
   constructor(
@@ -71,4 +71,26 @@ class GetBookUseCase {
   }
 }
 
-export { CreateBookUseCase, ListBooksByPageUseCase, GetBookUseCase };
+class DeleteBookUseCase {
+  constructor(
+    private repository: IDeleteBookUseCaseRepository,
+    private validate: IDeleteBookUseCaseValidate
+  ) {}
+
+  async deleteBook(_id: string) {
+    const errorMessage = await this.validate.deleteBook(_id);
+
+    try {
+      if(!errorMessage) {
+        await this.repository.deleteBook(_id);
+        return new DeleteBookUseCaseResponse(null)
+      } else {
+        return new DeleteBookUseCaseResponse(new ErrorEntity(HTTP_STATUSES.BAD_REQUEST, errorMessage))
+      }
+    } catch (error: any) {
+      return new DeleteBookUseCaseResponse(new ErrorEntity(HTTP_STATUSES.INTERNAL_SERVER_ERROR, error.message))
+    }
+  }
+}
+
+export { CreateBookUseCase, ListBooksByPageUseCase, GetBookUseCase, DeleteBookUseCase };

@@ -2,7 +2,12 @@ import { Router } from "express";
 
 import { HTTP_STATUSES } from "../../../../common/constants";
 
-import { createBook, getBook, listBooksByPage } from "../controller/book";
+import {
+  createBook,
+  deleteBook,
+  getBook,
+  listBooksByPage,
+} from "../controller/book";
 
 const routes = Router();
 
@@ -44,6 +49,19 @@ routes.get("/book", async (req, res) => {
     res.status(code).send(message);
   } else {
     res.status(HTTP_STATUSES.OK).send(response.book);
+  }
+});
+
+routes.delete("/book", async (req, res) => {
+  const query = req.query;
+
+  const response = await deleteBook(query._id);
+
+  if (response.error) {
+    const { code, message } = response.error;
+    res.status(code).send(message)
+  } else {
+    res.status(HTTP_STATUSES.OK).send()
   }
 });
 

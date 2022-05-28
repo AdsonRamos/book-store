@@ -24,9 +24,14 @@ async function getBook(_id: string) {
   return await Book.findOne({_id})
 }
 
+async function deleteBook(_id: string) {
+  return await Book.deleteOne({_id})
+}
+
 export {
   createBook,
   getBookBySBN,
   listBooksByPage,
-  getBook
+  getBook,
+  deleteBook
 }

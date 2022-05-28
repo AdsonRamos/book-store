@@ -1,6 +1,6 @@
 import { checkEmpty } from "../../../../common/helpers/stringHelper";
 import { BookEntity } from "../../../domain/usecase/entity/book";
-import { ICreateBookUseCaseValidate, IGetBookUseCaseValidate, IListBooksByPageUseCaseValidate } from "../../../domain/usecase/validate/book";
+import { ICreateBookUseCaseValidate, IDeleteBookUseCaseValidate, IGetBookUseCaseValidate, IListBooksByPageUseCaseValidate } from "../../../domain/usecase/validate/book";
 import { getBookBySBN } from "../../internal/database/mongo/book";
 
 class CreateBookUseCaseValidate implements ICreateBookUseCaseValidate {
@@ -32,4 +32,12 @@ class GetBookUseCaseValidate implements IGetBookUseCaseValidate {
   }
 }
 
-export { CreateBookUseCaseValidate, ListBooksByPageUseCaseValidate, GetBookUseCaseValidate};
+class DeleteBookUseCaseValidate implements IDeleteBookUseCaseValidate {
+  async deleteBook(_id: string): Promise<String | null> {
+    if(checkEmpty(_id)) return "O id do livro não foi informado";
+
+    return null;
+  }
+}
+
+export { CreateBookUseCaseValidate, ListBooksByPageUseCaseValidate, GetBookUseCaseValidate, DeleteBookUseCaseValidate};

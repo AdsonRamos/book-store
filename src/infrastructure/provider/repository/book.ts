@@ -1,6 +1,16 @@
 import { BookEntity } from "../../../domain/usecase/entity/book";
-import { ICreateBookUseCaseRepository, IGetBookUseCaseRepository, IListBooksByPageUseCaseRepository } from "../../../domain/usecase/repository/book";
-import { createBook, getBook, listBooksByPage } from "../../internal/database/mongo/book";
+import {
+  ICreateBookUseCaseRepository,
+  IDeleteBookUseCaseRepository,
+  IGetBookUseCaseRepository,
+  IListBooksByPageUseCaseRepository,
+} from "../../../domain/usecase/repository/book";
+import {
+  createBook,
+  getBook,
+  listBooksByPage,
+  deleteBook,
+} from "../../internal/database/mongo/book";
 
 class CreateBookUseCaseRepository implements ICreateBookUseCaseRepository {
   async createBook(book: BookEntity): Promise<any> {
@@ -8,16 +18,29 @@ class CreateBookUseCaseRepository implements ICreateBookUseCaseRepository {
   }
 }
 
-class ListBooksByPageUseCaseRepository implements IListBooksByPageUseCaseRepository{
+class ListBooksByPageUseCaseRepository
+  implements IListBooksByPageUseCaseRepository
+{
   async listBooksByPage(page: number, itensByPage: number): Promise<String[]> {
     return await listBooksByPage(page, itensByPage);
   }
 }
 
-class GetBookUseCaseRepository implements IGetBookUseCaseRepository{
-  async getBook(_id: string): Promise<String[]> {
+class GetBookUseCaseRepository implements IGetBookUseCaseRepository {
+  async getBook(_id: string): Promise<any> {
     return await getBook(_id);
   }
 }
 
-export { CreateBookUseCaseRepository, ListBooksByPageUseCaseRepository, GetBookUseCaseRepository };
+class DeleteBookUseCaseRepository implements IDeleteBookUseCaseRepository {
+  async deleteBook(_id: string): Promise<any> {
+    return await deleteBook(_id);
+  }
+}
+
+export {
+  CreateBookUseCaseRepository,
+  ListBooksByPageUseCaseRepository,
+  GetBookUseCaseRepository,
+  DeleteBookUseCaseRepository,
+};

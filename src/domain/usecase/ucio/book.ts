@@ -31,4 +31,12 @@ class GetBookUseCaseResponse {
   }
 }
 
-export { CreateBookUseCaseResponse, ListBooksByPageUseCaseResponse, GetBookUseCaseResponse };
+class DeleteBookUseCaseResponse {
+  public error: ErrorEntity | null;
+
+  constructor(error: ErrorEntity | null) {
+    this.error = error;
+  }
+}
+
+export { CreateBookUseCaseResponse, ListBooksByPageUseCaseResponse, GetBookUseCaseResponse, DeleteBookUseCaseResponse };
