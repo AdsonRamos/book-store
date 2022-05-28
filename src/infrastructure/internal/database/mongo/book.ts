@@ -20,8 +20,13 @@ async function listBooksByPage(page: number, itensByPage: number) {
   return await Book.find({}, { name: 1, _id:0 }).limit(itensByPage).skip(page * itensByPage)
 }
 
+async function getBook(_id: string) {
+  return await Book.findOne({_id})
+}
+
 export {
   createBook,
   getBookBySBN,
-  listBooksByPage
+  listBooksByPage,
+  getBook
 }

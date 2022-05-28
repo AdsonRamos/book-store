@@ -2,7 +2,7 @@ import { Router } from "express";
 
 import { HTTP_STATUSES } from "../../../../common/constants";
 
-import { createBook, listBooksByPage } from "../controller/book";
+import { createBook, getBook, listBooksByPage } from "../controller/book";
 
 const routes = Router();
 
@@ -31,6 +31,19 @@ routes.get("/books", async (req, res) => {
     res.status(code).send(message);
   } else {
     res.status(HTTP_STATUSES.OK).send(response.books);
+  }
+});
+
+routes.get("/book", async (req, res) => {
+  const query = req.query;
+
+  const response = await getBook(query._id);
+
+  if (response.error) {
+    const { code, message } = response.error;
+    res.status(code).send(message);
+  } else {
+    res.status(HTTP_STATUSES.OK).send(response.book);
   }
 });
 

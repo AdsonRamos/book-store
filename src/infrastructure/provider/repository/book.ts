@@ -1,6 +1,6 @@
 import { BookEntity } from "../../../domain/usecase/entity/book";
-import { ICreateBookUseCaseRepository, IListBooksByPageUseCaseRepository } from "../../../domain/usecase/repository/book";
-import { createBook, listBooksByPage } from "../../internal/database/mongo/book";
+import { ICreateBookUseCaseRepository, IGetBookUseCaseRepository, IListBooksByPageUseCaseRepository } from "../../../domain/usecase/repository/book";
+import { createBook, getBook, listBooksByPage } from "../../internal/database/mongo/book";
 
 class CreateBookUseCaseRepository implements ICreateBookUseCaseRepository {
   async createBook(book: BookEntity): Promise<any> {
@@ -14,4 +14,10 @@ class ListBooksByPageUseCaseRepository implements IListBooksByPageUseCaseReposit
   }
 }
 
-export { CreateBookUseCaseRepository, ListBooksByPageUseCaseRepository };
+class GetBookUseCaseRepository implements IGetBookUseCaseRepository{
+  async getBook(_id: string): Promise<String[]> {
+    return await getBook(_id);
+  }
+}
+
+export { CreateBookUseCaseRepository, ListBooksByPageUseCaseRepository, GetBookUseCaseRepository };

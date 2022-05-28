@@ -1,9 +1,9 @@
 import { HTTP_STATUSES } from "../../../common/constants";
 import { BookEntity } from "./entity/book";
 import { ErrorEntity } from "./entity/error";
-import { ICreateBookUseCaseRepository, IListBooksByPageUseCaseRepository } from "./repository/book";
-import { CreateBookUseCaseResponse, ListBooksByPageUseCaseResponse } from "./ucio/book";
-import { ICreateBookUseCaseValidate, IListBooksByPageUseCaseValidate } from "./validate/book";
+import { ICreateBookUseCaseRepository, IGetBookUseCaseRepository, IListBooksByPageUseCaseRepository } from "./repository/book";
+import { CreateBookUseCaseResponse, GetBookUseCaseResponse, ListBooksByPageUseCaseResponse } from "./ucio/book";
+import { ICreateBookUseCaseValidate, IGetBookUseCaseValidate, IListBooksByPageUseCaseValidate } from "./validate/book";
 
 class CreateBookUseCase {
   constructor(
@@ -49,4 +49,26 @@ class ListBooksByPageUseCase {
   }
 }
 
-export { CreateBookUseCase, ListBooksByPageUseCase };
+class GetBookUseCase {
+  constructor(
+    private repository: IGetBookUseCaseRepository,
+    private validate: IGetBookUseCaseValidate
+  ) {}
+
+  async getBook(_id: string) {
+    const errorMessage = await this.validate.getBook(_id);
+
+    try {
+      if(!errorMessage) {
+        const usecaseResponse = await this.repository.getBook(_id);
+        return new GetBookUseCaseResponse(usecaseResponse, null)
+      } else {
+        return new GetBookUseCaseResponse(null, new ErrorEntity(HTTP_STATUSES.BAD_REQUEST, errorMessage))
+      }
+    } catch (error: any) {
+      return new GetBookUseCaseResponse(null, new ErrorEntity(HTTP_STATUSES.INTERNAL_SERVER_ERROR, error.message))
+    }
+  }
+}
+
+export { CreateBookUseCase, ListBooksByPageUseCase, GetBookUseCase };

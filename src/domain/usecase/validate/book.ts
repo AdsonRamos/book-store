@@ -8,4 +8,8 @@ interface IListBooksByPageUseCaseValidate {
   listBooksByPage(page: number, itensByPage: number): Promise<String | null>;
 }
 
-export { ICreateBookUseCaseValidate, IListBooksByPageUseCaseValidate };
+interface IGetBookUseCaseValidate {
+  getBook(_id: string): Promise<String | null>;
+}
+
+export { ICreateBookUseCaseValidate, IListBooksByPageUseCaseValidate, IGetBookUseCaseValidate };

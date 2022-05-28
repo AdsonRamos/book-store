@@ -21,4 +21,14 @@ class ListBooksByPageUseCaseResponse {
   }
 }
 
-export { CreateBookUseCaseResponse, ListBooksByPageUseCaseResponse };
+class GetBookUseCaseResponse {
+  public book: BookEntity | null;
+  public error: ErrorEntity | null;
+
+  constructor(book: BookEntity | null, error: ErrorEntity | null) {
+    this.book = book;
+    this.error = error;
+  }
+}
+
+export { CreateBookUseCaseResponse, ListBooksByPageUseCaseResponse, GetBookUseCaseResponse };
