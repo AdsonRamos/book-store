@@ -22,7 +22,7 @@ async function listBooksByPage(page: number, itensByPage: number) {
     .skip(page * itensByPage);
 }
 
-async function getBook(_id: string) {
+async function getBook(_id: string | null) {
   return await Book.findOne({ _id });
 }
 
