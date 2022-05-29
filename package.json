@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node src/index.ts",
     "dev:server": "ts-node-dev --respawn --transpile-only src/index.ts",
     "test": "jest",
     "test:cov": "NODE_OPTIONS=--experimental-vm-modules npx jest --no-cache --runInBand --coverage"
@@ -22,6 +23,7 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "express": "^4.18.1",
-    "mongoose": "^6.3.4"
+    "mongoose": "^6.3.4",
+    "ts-node": "^10.8.0"
   }
 }
