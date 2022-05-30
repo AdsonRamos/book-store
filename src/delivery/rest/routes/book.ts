@@ -23,8 +23,6 @@ routes.post("/book", async (req, res) => {
   } else {
     res.status(HTTP_STATUSES.OK).send(body);
   }
-
-  console.log("Response", response);
 });
 
 routes.get("/books", async (req, res) => {

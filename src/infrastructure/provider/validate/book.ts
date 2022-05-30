@@ -13,7 +13,7 @@ class CreateBookUseCaseValidate implements ICreateBookUseCaseValidate {
   async createBook(book: BookEntity): Promise<String | null> {
     if (checkEmpty(book.name)) return "O título do livro não foi fornecedo";
 
-    if (await getBookBySBN(book.sbn)) return "Já existe livro com este SBN";
+    if ((await getBookBySBN(book.sbn)).length > 0) return "Já existe livro com este SBN";
 
     return null;
   }
