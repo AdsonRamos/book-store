@@ -7,6 +7,10 @@
 - Jest
 - Typescript
 
+BIG PICTURE
+
+![Estrutura](./docs/API.png)
+
 Para rodar o projeto em ambiente de desenvolvimento:
 
 ```npm run dev:server```
